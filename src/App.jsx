@@ -1,18 +1,19 @@
-import { useState } from 'react'
+import { useState, type JSX } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from './assets/vite.svg'
 import heroImg from './assets/hero.png'
 import './App.css'
 
-function App() {
+function App():JSX.Element {
+
   // let value = 10;
-  const [count, setCount] = useState(10)
-  const handleClick = () => {
+  const [count, setCount] = useState<number>(10)
+  const handleClick = (): void => {
     // value = value + 1;
     // console.log(value);
-    setCount(count + 1);
+    setCount((prev) => prev + 1);
     console.log(count);
-  }
+  };
 
   return (
     <>
@@ -24,7 +25,7 @@ function App() {
         <button
           type="button"
           className="counter"
-          onClick={() => setCount((count) => count + 1)}
+          onClick={() => setCount((prev) => prev + 1)}
         >
           Count is {count}
         </button>
@@ -32,7 +33,7 @@ function App() {
 
   
     </>
-  )
+  );
 }
 
-export default App
+export default App;
