@@ -13,7 +13,8 @@ import {
   IconButton,
 } from "@mui/material";
 import HomeIcon from "@mui/icons-material/Home";
-import InfoIcon from "@mui/icons-material/Info";
+import PersonIcon from '@mui/icons-material/Person';
+import SettingsIcon from '@mui/icons-material/Settings';
 import WorkIcon from "@mui/icons-material/Work";
 import EmailIcon from "@mui/icons-material/Email";
 import MenuIcon from "@mui/icons-material/Menu";
@@ -32,7 +33,8 @@ export default function Navbar() {
   // const navItems = ["Home", "About", "Projects", "Contact"];
   const navItems = [
     { label: "Home", icon: <HomeIcon />, link: "/" },
-    { label: "About", icon: <InfoIcon />, link: "/about" },
+    { label: "About", icon: <PersonIcon />, link: "/about" },
+     { label: "Skills", icon: <SettingsIcon />, link: "/skills" },
     { label: "Projects", icon: <WorkIcon />, link: "/projects" },
     { label: "Contact", icon: <EmailIcon />, link: "/contact" },
   ];
