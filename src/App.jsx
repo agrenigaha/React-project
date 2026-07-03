@@ -6,6 +6,8 @@ import Home from "./pages/Home";
 import About from "./pages/About";
 import Skills from "./pages/Skills";
 import Projects from "./pages/Projects";
+import Portfolio from "./pages/Portfolio";
+import News from "./pages/News";
 import Contact from "./pages/Contact";
 import { Box } from "@mui/material";
 export default function App() {
@@ -32,6 +34,8 @@ export default function App() {
         <Route path="/about" element={<About />} />
         <Route path="/skills" element={<Skills/>}/>
         <Route path="/projects" element={<Projects />} />
+         <Route path="/portfolio" element={<Portfolio/>}/>
+         <Route path="/news" element={<News/>}/>
         <Route path="/contact" element={<Contact />} />
       </Routes>
       

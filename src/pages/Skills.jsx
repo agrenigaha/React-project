@@ -65,10 +65,6 @@ export default function Skills() {
                   {service.title}
                 </Typography>
 
-                <Typography mt={2}>
-                  {service.description.slice(0, 80)}...
-                </Typography>
-
                 <Collapse in={open === index}>
                   <Typography mt={2} sx={{ lineHeight: 1.8 }}>
                     {service.description}

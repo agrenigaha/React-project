@@ -13,9 +13,11 @@ import {
   IconButton,
 } from "@mui/material";
 import HomeIcon from "@mui/icons-material/Home";
-import PersonIcon from '@mui/icons-material/Person';
-import SettingsIcon from '@mui/icons-material/Settings';
-import WorkIcon from "@mui/icons-material/Work";
+import PersonIcon from "@mui/icons-material/Person";
+import SettingsIcon from "@mui/icons-material/Settings";
+import AssignmentIcon from '@mui/icons-material/Assignment';
+import BusinessCenterIcon from "@mui/icons-material/BusinessCenter";
+import NewspaperIcon from '@mui/icons-material/Newspaper';
 import EmailIcon from "@mui/icons-material/Email";
 import MenuIcon from "@mui/icons-material/Menu";
 import { useTheme } from "@mui/material/styles";
@@ -34,8 +36,10 @@ export default function Navbar() {
   const navItems = [
     { label: "Home", icon: <HomeIcon />, link: "/" },
     { label: "About", icon: <PersonIcon />, link: "/about" },
-     { label: "Skills", icon: <SettingsIcon />, link: "/skills" },
-    { label: "Projects", icon: <WorkIcon />, link: "/projects" },
+    { label: "Skills", icon: <SettingsIcon />, link: "/skills" },
+    { label: "Projects", icon: <AssignmentIcon />, link: "/projects" },
+    { label: "Portfolio", icon: <BusinessCenterIcon />, link: "/portfolio" },
+       { label: "News", icon: <NewspaperIcon />, link: "/news" },
     { label: "Contact", icon: <EmailIcon />, link: "/contact" },
   ];
   const handleNavClick = (link) => {
