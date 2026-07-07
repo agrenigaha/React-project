@@ -2,42 +2,11 @@ import { useState } from "react";
 import { Grid, Box, IconButton, Typography } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 
-const data = [
-  {
-    id: 0,
-    title: "Food",
-    url: "https://cdn.pixabay.com/photo/2023/12/30/14/21/coffee-8478202_1280.jpg",
-  },
-  {
-    id: 1,
-    title: "Nature",
-    url: "https://cdn.pixabay.com/photo/2021/10/15/09/42/farmers-6711562_1280.jpg",
-  },
-  {
-    id: 2,
-    title: "Nature",
-    url: "https://cdn.pixabay.com/photo/2026/02/02/20/52/black-and-white-10101586_1280.jpg",
-  },
-  {
-    id: 3,
-    title: "Animal",
-    url: "https://cdn.pixabay.com/photo/2022/02/17/20/37/dog-7019418_1280.jpg",
-  },
-  {
-    id: 4,
-    title: "Nature",
-    url: "https://cdn.pixabay.com/photo/2020/05/01/17/40/trees-5118309_1280.png",
-  },
-  {
-    id: 5,
-    title: "City",
-    url: "https://cdn.pixabay.com/photo/2026/04/22/07/41/07-41-15-443_1280.jpg",
-  },
-];
+import data from "../data/portfolio.json";
 
 export default function Portfolio() {
-  const [selectedImage, setSelectedImage] = useState(null);
-  const [category, setCategory]= useState("All");
+  const [selectedItem, setSelectedItem] = useState(null);
+  const [category, setCategory] = useState("All");
 
   return (
     <Box>
@@ -49,11 +18,15 @@ export default function Portfolio() {
           mb: 5,
         }}
       >
-        <Typography variant="h3" color="secondary" fontWeight="bold"
-         sx={{
-              fontFamily: "'Poppins', sans-serif",
-              fontWeight: 600,
-            }}>
+        <Typography
+          variant="h3"
+          color="secondary"
+          fontWeight="bold"
+          sx={{
+            fontFamily: "'Montserrat', sans-serif",
+            fontWeight: 900,
+          }}
+        >
           Portfolio
         </Typography>
 
@@ -64,51 +37,51 @@ export default function Portfolio() {
           }}
         >
           <Typography
-          onClick={() => setCategory("All")}
+            onClick={() => setCategory("All")}
             sx={{
               cursor: "pointer",
-               fontFamily: "'Montserrat', sans-serif",
-              fontWeight: category==="All"?"bold":"normal",
+              fontFamily: "'Popins', sans-serif",
+              fontWeight: category === "All" ? "bold" : "normal",
             }}
           >
             All
           </Typography>
           <Typography
-          onClick={() => setCategory("Food")}
+            onClick={() => setCategory("Food")}
             sx={{
               cursor: "pointer",
-               fontFamily: "'Montserrat', sans-serif",
-              fontWeight: category==="Food"?"bold":"normal",
+              fontFamily: "'Popins', sans-serif",
+              fontWeight: category === "Food" ? "bold" : "normal",
             }}
           >
             Food
           </Typography>
           <Typography
-          onClick={() => setCategory("Nature")}
+            onClick={() => setCategory("Nature")}
             sx={{
               cursor: "pointer",
-               fontFamily: "'Montserrat', sans-serif",
-             fontWeight: category==="Nature"?"bold":"normal",
+              fontFamily: "'Popins', sans-serif",
+              fontWeight: category === "Nature" ? "bold" : "normal",
             }}
           >
             Nature
           </Typography>
           <Typography
-          onClick={() => setCategory("Animal")}
+            onClick={() => setCategory("Animal")}
             sx={{
               cursor: "pointer",
-               fontFamily: "'Montserrat', sans-serif",
-              fontWeight: category==="Animal"?"bold":"normal",
+              fontFamily: "'Popins', sans-serif",
+              fontWeight: category === "Animal" ? "bold" : "normal",
             }}
           >
             Animal
           </Typography>
           <Typography
-          onClick={() => setCategory("City")}
+            onClick={() => setCategory("City")}
             sx={{
               cursor: "pointer",
-               fontFamily: "'Montserrat', sans-serif",
-              fontWeight: category==="City"?"bold":"normal",
+              fontFamily: "'Popins', sans-serif",
+              fontWeight: category === "City" ? "bold" : "normal",
             }}
           >
             City
@@ -117,43 +90,41 @@ export default function Portfolio() {
       </Box>
       <Grid container spacing={3} justifyContent="center">
         {data
-        .filter(
-            (item)=> category ==="All"|| item.title === category
-        )
-        .map((item) => (
-          <Grid
-            item
-            md={6}
-            key={item.id}
-            sx={{
-              display: "flex",
-              justifyContent: "center",
-            }}
-          >
-            <Box
-              onClick={() => setSelectedImage(item.url)}
+          .filter((item) => category === "All" || item.title === category)
+          .map((item) => (
+            <Grid
+              item
+              md={6}
+              key={item.id}
               sx={{
-                width: 450,
-                maxWidth: "100%",
-                overflow: "hidden",
-                borderRadius: 6,
-                cursor: "pointer",
-                mx: "auto",
+                display: "flex",
+                justifyContent: "center",
               }}
             >
               <Box
-                component="img"
-                src={item.url}
+                onClick={() => setSelectedItem(item)}
                 sx={{
-                  width: "100%",
-                  height: 300,
-                  objectFit: "cover",
+                  width: 450,
+                  maxWidth: "100%",
+                  overflow: "hidden",
+                  borderRadius: 6,
+                  cursor: "pointer",
+                  mx: "auto",
                 }}
-              />
-            </Box>
-          </Grid>
-        ))}
-        {selectedImage && (
+              >
+                <Box
+                  component="img"
+                  src={item.src}
+                  sx={{
+                    width: "100%",
+                    height: 300,
+                    objectFit: "cover",
+                  }}
+                />
+              </Box>
+            </Grid>
+          ))}
+        {selectedItem && (
           <Box
             sx={{
               position: "fixed",
@@ -173,38 +144,45 @@ export default function Portfolio() {
                 borderRadius: 2,
                 width: 500,
                 maxWidth: "90%",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                tabSize: "large",
+                
+                textAlign: "center",
+               
               }}
             >
               <Box
                 component="img"
-                src={selectedImage}
+                src={selectedItem.src}
                 sx={{
-                  width: 350,
-                  maxWidth: "100%",
-                  height: "auto",
-                  maxHeight: 300,
-                  objectFit: "contain",
-                  display: "block",
-                  mx: "auto",
+                  width: "100%",
+                  
+                  height: 300,
+                  
+                  objectFit: "cover",
+                  
                   borderRadius: 2,
                 }}
               />
+              {selectedItem?.description && (
+                <Typography
+                  sx={{
+                    mt: 1,
+                    lineHeight: 1.8,
+                    fontFamily: "'Popins', sans-serif",
+                    fontWeight: 600,
+                    color: "black",
+                  }}
+                >
+                  {selectedItem.description}
+                </Typography>
+              )}
 
               <IconButton
-                onClick={() => setSelectedImage(null)}
+                onClick={() => setSelectedItem(null)}
                 sx={{
                   position: "absolute",
                   top: 10,
                   right: 10,
-
-                  "&:hover": {
-                    bgcolor: "#fff",
-                    mx: "auto",
-                  },
+                  color: "#fff",
                 }}
               >
                 <CloseIcon />

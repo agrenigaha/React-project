@@ -7,7 +7,7 @@ export default function Home() {
   return (
     <Grid
       container
-      spacing={2}
+      spacing={1}
       justifyContent="center"
       sx={{
         minHeight: "100vh",
@@ -21,6 +21,7 @@ export default function Home() {
           justifyContent: "center",
         }}
       >
+ 
         <Box
           component="img"
           src={profile}
@@ -33,6 +34,7 @@ export default function Home() {
             boxShadow: 8,
           }}
         />
+        
       </Grid>
       <Grid size={ 6 }>
         <Box
@@ -48,8 +50,8 @@ export default function Home() {
             fontWeight="bold"
             color="secondary"
             sx={{
-              fontFamily: "'Poppins', sans-serif",
-              fontWeight: 600,
+              fontFamily: "'Montserrat', sans-serif",
+              fontWeight: 900,
             }}
           >
             AGRENI GAHA
@@ -58,8 +60,8 @@ export default function Home() {
             variant="h4"
             sx={{
               mt: 1,
-              fontFamily: "'Montserrat', sans-serif",
-              fontWeight: 700,
+              fontFamily: "'Poppins', sans-serif",
+              fontWeight: 800,
             }}
           >
             Frontend Developer
@@ -68,7 +70,8 @@ export default function Home() {
             variant="body1"
             sx={{
               mt: 2,
-              fontSize: "1.3rem",
+              fontFamily: "'Poppins', sans-serif",
+              fontSize: "1.4rem",
               lineHeight: 1.8,
               maxWidth: 550,
             }}

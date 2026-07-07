@@ -49,8 +49,8 @@ export default function Contact() {
             fontWeight="bold"
             color="secondary"
             sx={{
-              fontFamily: "'Poppins', sans-serif",
-              fontWeight: 600,
+              fontFamily: "'Montserrat', sans-serif",
+              fontWeight: 900,
             }}
           >
             Contact Me
@@ -86,8 +86,8 @@ export default function Contact() {
               marginTop: 3,
               backgroundColor: "grey",
               mt: 1,
-              fontFamily: "'Montserrat', sans-serif",
-              fontWeight: 700,
+              fontFamily: "'Popins', sans-serif",
+              fontWeight: 600,
             }}
           >
             Send

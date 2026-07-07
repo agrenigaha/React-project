@@ -1,82 +1,77 @@
-import { Box, Typography, Grid, Card, CardContent } from "@mui/material";
-
+import { Typography, Grid, Card, CardContent,Box } from "@mui/material";
+import projects from "../data/projects.json";
 export default function Projects() {
   return (
-    <Box
-      sx={{
-        minHeight: "100vh",
-        px: 6,
-        py: 6,
-      }}
-    >
-      <Typography
-        variant="h2"
-        color="secondary"
+    <Box>
+      <Box
         sx={{
-          fontFamily: "'Poppins', sans-serif",
-          fontWeight: 600,
-          mb: 2,
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          mb: 5,
         }}
       >
-        PROJECTS
-      </Typography>
-
-      <Grid container justifyContent="center">
-        <Grid size={8}>
-          <Card
+        <Typography
+          variant="h3"
+          color="secondary"
+          fontWeight="bold"
+          sx={{
+            fontFamily: "'Montserrat', sans-serif",
+            fontWeight: 900,
+          }}
+        >
+          Projects
+        </Typography>
+        </Box>
+   <Grid container spacing={3} justifyContent="center">
+  {projects.map((project) => (
+    <Grid size={ 8 } key={project.id}>
+      <Card
+        sx={{
+          boxShadow: 4,
+          borderRadius: 3,
+          p: 2,
+        }}
+      >
+        <CardContent>
+          <Typography
+            variant="h4"
             sx={{
-              boxShadow: 4,
-              borderRadius: 3,
-              p: 2,
+              fontFamily: "'Montserrat', sans-serif",
+              fontWeight: 800,
+              mb: 2,
             }}
           >
-            <CardContent>
-              <Typography
-                variant="h4"
-                fontWeight="bold"
-                mb={2}
-                sx={{
-                  fontFamily: "'Montserrat', sans-serif",
-                  fontWeight: 700,
-                }}
-              >
-                Movie Booking System
-              </Typography>
+            {project.title}
+          </Typography>
 
-              <Typography variant="subtitle1" color="black" mb={2}>
-                HTML • CSS • JavaScript
-              </Typography>
+          <Typography variant="subtitle1" color="black" mb={2}>
+            {project.technologies}
+          </Typography>
 
-              <Typography
-                variant="body1"
-                sx={{
-                  fontFamily: "'Montserrat', sans-serif",
-                }}
-              >
-                Developed a front-end Movie Booking System as a college minor
-                project using HTML, CSS, and JavaScript. The system allows users
-                to browse Nepali movies, view show timings, select preferred
-                seats, and simulate the ticket booking process through a
-                responsive and user-friendly interface.
-              </Typography>
+          <Typography
+            variant="body1"
+            sx={{
+              fontFamily: "'Popins', sans-serif",
+            }}
+          >
+            {project.description1}
+          </Typography>
 
-              <Typography
-                variant="body1"
-                sx={{
-                  mt: 2,
-                  fontFamily: "'Montserrat', sans-serif",
-                }}
-              >
-                Key features include movie listings with posters, login/signup
-                interfaces, seat selection, show schedules, location-based
-                filtering, and responsive design. The project focuses on
-                promoting Nepali cinema while providing users with a modern
-                online booking experience.
-              </Typography>
-            </CardContent>
-          </Card>
-        </Grid>
-      </Grid>
-    </Box>
-  );
+          <Typography
+            variant="body1"
+            sx={{
+              mt: 2,
+              fontFamily: "'Popins', sans-serif",
+            }}
+          >
+            {project.description2}
+          </Typography>
+        </CardContent>
+      </Card>
+    </Grid>
+  ))}
+</Grid>
+</Box>
+  )
 }

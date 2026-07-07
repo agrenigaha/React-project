@@ -1,0 +1,46 @@
+ [
+  {
+    "id": 1,
+    "title": "Frontend Development",
+    "src": "https://cdn.pixabay.com/photo/2018/05/16/20/30/post-it-3406962_1280.jpg",
+    "icon": "Code",
+    "description": "I build modern, responsive, and interactive web applications using HTML, CSS, JavaScript, React.js, and Material UI. I focus on writing clean, reusable, and maintainable code while creating fast, accessible, and user-friendly interfaces that provide a smooth experience across different devices and browsers."
+  },
+  {
+    "id": 2,
+    "title": "Responsive Design",
+    "src": "https://cdn.pixabay.com/photo/2024/05/21/19/57/computer-8779036_1280.jpg",
+    "icon": "Devices",
+    "description": "I create fully responsive websites that adapt seamlessly to desktops, tablets, and mobile devices. By using CSS Flexbox, Grid,   media queries, and Material UI's responsive components, I ensure every page is visually appealing, easy to navigate, and performs consistently on all screen sizes."
+  },
+  {
+    "id": 3,
+    "title": "UI Development",
+
+    "src": "https://cdn.pixabay.com/photo/2018/08/28/11/45/code-3637299_1280.jpg",
+    "icon": "DesignServices",
+    "description": "I design and develop clean, intuitive user interfaces usingReact.js and Material UI. By building reusable components, maintaining  consistent layouts, typography, and color schemes, I create visually appealing,accessible, and user-friendly experiences while following modern frontend development best practices."
+  },
+  {
+    "id": 4,
+    "title": "React.js Development",
+    "src": "https://cdn.pixabay.com/photo/2015/09/17/17/25/code-944499_1280.jpg",
+    "icon": "Javascript",
+    "description": "I develop interactive single-page applications using React.js, focusing on reusable components, state management, and efficient rendering. I build scalable applications with clean architecture and maintainable codewhile following modern React best practices."
+  },
+  {
+    "id": 5,
+    "title": "Material UI Development",
+    "src": "https://cdn.pixabay.com/photo/2016/06/28/05/10/laptop-1483974_1280.jpg",
+    "icon": "Source",
+    
+    "description": "I create visually appealing and responsive user interfaces using Material UI. By leveraging its pre-built components, theming capabilities,and responsive design features, I build modern web applications that are consistent, accessible, and user-friendly."
+  },
+  {
+    "id": 6,
+    "title": "Git and GitHub",
+    "src": "https://cdn.pixabay.com/photo/2020/06/12/14/07/code-5290465_1280.jpg",
+    "icon": "Source",
+    "description": "I am proficient in using Git for version control and GitHub for collaborative development. I manage code repositories, create branches, merge changes, and resolve conflicts effectively.My experience with Git and GitHub enables me to work efficiently in team environmentsand maintain a clean, organized codebase."
+  }
+]

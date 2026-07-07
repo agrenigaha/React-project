@@ -11,25 +11,22 @@ import {
   StepContent,
 } from "@mui/material";
 import profile from "../assets/profile.jpeg";
+import about from "../data/about.json";
+import programming from "../data/programming.json";
+import language from "../data/language.json";
+import knowledge from "../data/knowledge.json";
+import interests from "../data/interests.json";
+import education from "../data/education.json";
 
 export default function About() {
-  const programmingSkills = [
-    { name: "HTML", value: 95 },
-    { name: "CSS", value: 90 },
-    { name: "JavaScript", value: 85 },
-    { name: "React.js", value: 80 },
-    { name: "Material UI", value: 85 },
-  ];
-
-  const languageSkills = [
-    { name: "English", value: 90 },
-    { name: "Nepali", value: 95 },
-  ];
-
   return (
     <Grid container spacing={6} sx={{ px: 6, py: 6 }}>
       <Grid size={12}>
-        <Typography variant="h2" color="secondary" sx={{ fontWeight: 700 }}>
+        <Typography
+          variant="h2"
+          color="secondary"
+          sx={{ fontFamily: "'Montserrat', sans-serif", fontWeight: 900 }}
+        >
           About Me
         </Typography>
       </Grid>
@@ -52,10 +49,10 @@ export default function About() {
         <Typography
           variant="body1"
           sx={{
-            fontSize: "1.2rem",
+            fontSize: "1.4rem",
             lineHeight: 2,
             maxWidth: "900px",
-            fontFamily: "'Montserrat', sans-serif",
+            fontFamily: "'Poppins', sans-serif",
           }}
         >
           Hello! I'm Agreni Gaha, a passionate Frontend Developer who enjoys
@@ -67,65 +64,37 @@ export default function About() {
       </Grid>
 
       <Grid size={12}>
-    
+        <Grid container spacing={4}>
+          <Grid size={6}>
             <Box sx={{ display: "grid", gap: 1 }}>
-              <Typography
-                variant="h6"
-                color="black"
-                
-              >
-                Birthday: 18 Oct 2005
-              </Typography>
-              <Typography
-                variant="h6"
-                color="black"
-                
-              >
-                Age: 20
-              </Typography>
-              <Typography
-                variant="h6"
-                color="black"
-                
-              >
-                Address: Lalitpur
-              </Typography>
-              <Typography
-                variant="h6"
-                color="black"
-                
-              >
-                Email: agrenigaha@gmail.com
-              </Typography>
-              <Typography
-                variant="h6"
-                color="black"
-                
-              >
-                Phone: 9866205225
-              </Typography>
-              <Typography
-                variant="h6"
-                color="black"
-                
-              >
-                Nationality: Nepali
-              </Typography>
-              <Typography
-                variant="h6"
-                color="black"
-                
-              >
-                College: Everest Engineering College
-              </Typography>
-              <Typography
-                variant="h6"
-                color="black"
-               
-              >
-                Language: English, Nepali
-              </Typography>
+              {about.leftColumn.map((item) => (
+                <Typography
+                  key={item.label}
+                  variant="h6"
+                  fontFamily="'Poppins', sans-serif"
+                  fontSize="1.4rem"
+                >
+                  {item.label}: {item.value}
+                </Typography>
+              ))}
             </Box>
+          </Grid>
+
+          <Grid size={6}>
+            <Box sx={{ display: "grid", gap: 1 }}>
+              {about.rightColumn.map((item) => (
+                <Typography
+                  key={item.label}
+                  variant="h6"
+                  fontFamily="'Poppins', sans-serif"
+                  fontSize="1.4rem"
+                >
+                  {item.label}: {item.value}
+                </Typography>
+              ))}
+            </Box>
+          </Grid>
+        </Grid>
       </Grid>
 
       <Grid size={12}>
@@ -139,15 +108,20 @@ export default function About() {
         >
           <CardContent>
             <Grid container spacing={4}>
-              <Grid size={{ xs: 12, md: 6 }}>
+              <Grid size={6}>
                 <Typography
                   variant="h4"
                   color="black"
-                  sx={{ fontWeight: 700, mb: 2 }}
+                  sx={{
+                    fontFamily: "'Poppins', sans-serif",
+                    fontWeight: 800,
+                    mb: 2,
+                  }}
                 >
                   Programming Skills
                 </Typography>
-                {programmingSkills.map((item) => (
+
+                {programming.map((item) => (
                   <Box key={item.name} sx={{ mb: 2 }}>
                     <Typography>{item.name}</Typography>
                     <LinearProgress
@@ -160,15 +134,20 @@ export default function About() {
                 ))}
               </Grid>
 
-              <Grid size={{ xs: 12, md: 6 }}>
+              <Grid size={6}>
                 <Typography
                   variant="h4"
                   color="black"
-                  sx={{ fontWeight: 700, mb: 2 }}
+                  sx={{
+                    fontFamily: "'Poppins', sans-serif",
+                    fontWeight: 800,
+                    mb: 2,
+                  }}
                 >
                   Language Skills
                 </Typography>
-                {languageSkills.map((item) => (
+
+                {language.map((item) => (
                   <Box key={item.name} sx={{ mb: 2 }}>
                     <Typography>{item.name}</Typography>
                     <LinearProgress
@@ -187,36 +166,62 @@ export default function About() {
 
       <Grid size={12}>
         <Grid container spacing={4}>
-          <Grid size={{ xs: 12, md: 6 }}>
-         
-                <Typography variant="h4" sx={{ fontWeight: 700, mb: 2 }}>
-                  Knowledge
-                </Typography>
-                <Typography variant="body1" sx={{ lineHeight: 2 }}>
-                  • HTML & CSS
+          <Grid size={6}>
+            <Typography
+              variant="h4"
+              color="black"
+              sx={{
+                fontFamily: "'Poppins', sans-serif",
+                fontWeight: 800,
+                mb: 2,
+              }}
+            >
+              Knowledge
+            </Typography>
+            <Typography
+              variant="body1"
+              sx={{
+                lineHeight: 2,
+                fontFamily: "'Poppins', sans-serif",
+                fontSize: "1.4rem",
+              }}
+            >
+              {knowledge.map((item, i) => (
+                <span key={i}>
+                  • {item}
                   <br />
-                  • JavaScript
-                  <br />
-                  • React.js
-                  <br />• MUI
-                </Typography>
+                </span>
+              ))}
+            </Typography>
           </Grid>
 
-          <Grid size={{ xs: 12, md: 6 }}>
-            
-            
-                <Typography variant="h4" sx={{ fontWeight: 700, mb: 2 }}>
-                  Interests
-                </Typography>
-                <Typography variant="body1" sx={{ lineHeight: 2 }}>
-                  • UI/UX Design
+          <Grid size={6}>
+            <Typography
+              variant="h4"
+              color="black"
+              sx={{
+                fontFamily: "'Poppins', sans-serif",
+                fontWeight: 800,
+                mb: 2,
+              }}
+            >
+              Interests
+            </Typography>
+            <Typography
+              variant="body1"
+              sx={{
+                lineHeight: 2,
+                fontFamily: "'Poppins', sans-serif",
+                fontSize: "1.4rem",
+              }}
+            >
+              {interests.map((item, i) => (
+                <span key={i}>
+                  • {item}
                   <br />
-                  • Building Responsive Websites
-                  <br />
-                  • Learning New Technologies
-                  <br />• Open Source Projects
-                </Typography>
-              
+                </span>
+              ))}
+            </Typography>
           </Grid>
         </Grid>
       </Grid>
@@ -236,37 +241,18 @@ export default function About() {
             </Typography>
 
             <Stepper orientation="vertical">
-              <Step active>
-                <StepLabel>
-                  <Typography variant="h6">
-                    Bachelor of Engineering in Information Technology (BEIT)
-                  </Typography>
-                </StepLabel>
-                <StepContent>
-                  <Typography>Everest Engineering College</Typography>
-                  <Typography color="secondary">2022 - Present</Typography>
-                </StepContent>
-              </Step>
+              {education.map((item, index) => (
+                <Step key={index} active>
+                  <StepLabel>
+                    <Typography variant="h6">{item.title}</Typography>
+                  </StepLabel>
 
-              <Step active>
-                <StepLabel>
-                  <Typography variant="h6">Higher Secondary (+2)</Typography>
-                </StepLabel>
-                <StepContent>
-                  <Typography>Prasadi Academy</Typography>
-                  <Typography color="secondary">2021 - 2022</Typography>
-                </StepContent>
-              </Step>
-
-              <Step active>
-                <StepLabel>
-                  <Typography variant="h6">SEE</Typography>
-                </StepLabel>
-                <StepContent>
-                  <Typography>Eager Bridge Secondary School</Typography>
-                  <Typography color="secondary">2021</Typography>
-                </StepContent>
-              </Step>
+                  <StepContent>
+                    <Typography>{item.place}</Typography>
+                    <Typography color="secondary">{item.year}</Typography>
+                  </StepContent>
+                </Step>
+              ))}
             </Stepper>
           </CardContent>
         </Card>

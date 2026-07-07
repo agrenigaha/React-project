@@ -1,0 +1,14 @@
+{
+  "leftColumn": [
+    { "label": "Birthday", "value": "18 Oct 2005" },
+    { "label": "Age", "value": "20" },
+    { "label": "Address", "value": "Lalitpur" },
+    { "label": "Email", "value": "agrenigaha@gmail.com" }
+  ],
+  "rightColumn": [
+    { "label": "Phone", "value": "9866205225" },
+    { "label": "Nationality", "value": "Nepali" },
+    { "label": "College", "value": "Everest Engineering College" },
+    { "label": "Language", "value": "English, Nepali" }
+  ]
+}

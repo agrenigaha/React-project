@@ -15,9 +15,9 @@ import {
 import HomeIcon from "@mui/icons-material/Home";
 import PersonIcon from "@mui/icons-material/Person";
 import SettingsIcon from "@mui/icons-material/Settings";
-import AssignmentIcon from '@mui/icons-material/Assignment';
+import AssignmentIcon from "@mui/icons-material/Assignment";
 import BusinessCenterIcon from "@mui/icons-material/BusinessCenter";
-import NewspaperIcon from '@mui/icons-material/Newspaper';
+import NewspaperIcon from "@mui/icons-material/Newspaper";
 import EmailIcon from "@mui/icons-material/Email";
 import MenuIcon from "@mui/icons-material/Menu";
 import { useTheme } from "@mui/material/styles";
@@ -28,6 +28,7 @@ export default function Navbar() {
 
   const primaryColor = theme.palette.primary.main;
   const secondaryColor = theme.palette.secondary.main;
+  const background = theme.palette.background;
   const navigate = useNavigate();
   const location = useLocation();
   const [open, setOpen] = useState(false);
@@ -39,7 +40,7 @@ export default function Navbar() {
     { label: "Skills", icon: <SettingsIcon />, link: "/skills" },
     { label: "Projects", icon: <AssignmentIcon />, link: "/projects" },
     { label: "Portfolio", icon: <BusinessCenterIcon />, link: "/portfolio" },
-       { label: "News", icon: <NewspaperIcon />, link: "/news" },
+    { label: "News", icon: <NewspaperIcon />, link: "/news" },
     { label: "Contact", icon: <EmailIcon />, link: "/contact" },
   ];
   const handleNavClick = (link) => {
@@ -82,10 +83,14 @@ export default function Navbar() {
                 onClick={() => handleNavClick(item.link)}
                 sx={{
                   fontFamily: "'Poppins', sans-serif",
-                  fontWeight: 600,
-                  color: secondaryColor,
+                  fontWeight: isActive ? 800 : 500,
+                  color: isActive ? "black" : secondaryColor,
+                  transform: isActive ? "scale(1.15)" : "scale(1)",
+                  transition: "all 0.25s ease, color 0.25s ease",
+
                   "&:hover": {
                     color: "black",
+                    transform: "scale(1.08)",
                   },
                 }}
               >

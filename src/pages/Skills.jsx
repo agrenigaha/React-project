@@ -5,80 +5,149 @@ import {
   Card,
   CardContent,
   Typography,
-  Collapse,
+  IconButton,
   Button,
+  CardMedia,
 } from "@mui/material";
-
-const services = [
-  {
-    title: "Frontend Development",
-    description: `I specialize in building modern, responsive, and user-friendly web applications 
-    using HTML, CSS, JavaScript, React.js, and Material UI. I focus on writing clean, reusable, 
-    and maintainable code that delivers a smooth user experience across different devices and browsers.
-    I enjoy transforming ideas and designs into interactive websites that are both visually appealing
-     and functional. My goal is to create applications that are fast, accessible, and easy to use while
-      following modern frontend development best practices.`,
-  },
-  {
-    title: "Responsive Design",
-    description: `Create websites that work perfectly on all screen sizes.I design and develop websites 
-    that adapt seamlessly to desktops, tablets, and mobile devices. By using CSS Flexbox, Grid, media 
-    queries, and Material UI's responsive components, I ensure that every page looks great regardless of screen size.
-    I believe responsiveness is an essential part of modern web development because it improves accessibility,
-     usability, and the overall user experience for visitors on any device.`,
-  },
-  {
-    title: "UI Development",
-    description: `Design clean and user-friendly interfaces with Material UI.I build reusable
-     React components and develop interactive single-page applications with React Router and Material UI.
-      I also enjoy creating clean user interfaces with consistent typography, color palettes, and layouts 
-      that enhance the overall look and feel of a website.As I continue learning, I focus on improving my 
-      React skills, exploring new frontend technologies, and applying best practices to every project I create.`,
-  },
-];
+import CodeIcon from "@mui/icons-material/Code";
+import DevicesIcon from "@mui/icons-material/Devices";
+import DesignServicesIcon from "@mui/icons-material/DesignServices";
+import CloseIcon from "@mui/icons-material/Close";
+import JavascriptIcon from "@mui/icons-material/Javascript";
+import DashboardCustomizeIcon from "@mui/icons-material/DashboardCustomize";
+import SourceIcon from "@mui/icons-material/Source";
+import skills from "../data/skills.json";
+const iconMap = {
+  Code: <CodeIcon sx={{ fontSize: 70, color: "secondary.main" }} />,
+  Devices: <DevicesIcon sx={{ fontSize: 70, color: "secondary.main" }} />,
+  DesignServices: <DesignServicesIcon sx={{ fontSize: 70, color: "secondary.main" }} />,
+  Javascript: <JavascriptIcon sx={{ fontSize: 70, color: "secondary.main" }} />,
+  DashboardCustomize: <DashboardCustomizeIcon sx={{ fontSize: 70, color: "secondary.main" }} />,
+  Source: <SourceIcon sx={{ fontSize: 70, color: "secondary.main" }} />,
+};
 
 export default function Skills() {
-  const [open, setOpen] = useState(null);
-
-  const handleToggle = (index) => {
-    setOpen(open === index ? null : index);
-  };
+  const [selectedSkill, setSelectedSkill] = useState(null);
 
   return (
     <Box sx={{ p: 4 }}>
-      <Typography variant="h3" fontWeight="bold" mb={4}>
+      <Typography
+        variant="h3"
+        fontWeight="bold"
+        color="secondary"
+        sx={{
+          fontFamily: "'Montserrat', sans-serif",
+          fontWeight: 900,
+        }}
+      >
         What I Do
       </Typography>
 
-      <Grid container spacing={3}>
-        {services.map((service, index) => (
-          <Grid item xs={12} md={4} key={index}>
+      <Grid container spacing={3} sx={{ mt: 2 }}>
+        {skills.map((skill, index) => (
+          <Grid size={4} key={index} sx={{ display: "flex" }}>
             <Card
               sx={{
-                p: 2,
+                width: "100%",
+                height: "100%",
+                mt: 2,
+                p: 5,
                 borderRadius: 3,
-                boxShadow: 3,
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                justifyContent: "center",
+                fontFamily: "'Popins', sans-serif",
+                fontWeight: 600,
+                textAlign: "center",
+                transition: "0.3s",
+                cursor: "pointer",
+                "&:hover": {
+                  transform: "translateY(-10px)",
+                  boxShadow: 10,
+                  borderColor: "secondary.main",
+                },
+                border: "1px solid transparent",
               }}
             >
-              <CardContent>
-                <Typography variant="h6" fontWeight="bold">
-                  {service.title}
-                </Typography>
+              <Box mb={2}>{iconMap[skill.icon]}</Box>
+              <Typography variant="h6" fontFamily="'Popins', sans-serif" fontWeight="800">
+                {skill.title}
+              </Typography>
 
-                <Collapse in={open === index}>
-                  <Typography mt={2} sx={{ lineHeight: 1.8 }}>
-                    {service.description}
-                  </Typography>
-                </Collapse>
+              <Typography variant="body2" color="text.secondary" sx={{ mt: 2 ,fontFamily: "'Popins', sans-serif", fontWeight: 600 }}>
+                {skill.description.substring(0, 100)}...
+              </Typography>
 
-                <Button sx={{ mt: 2 }} onClick={() => handleToggle(index)}>
-                  {open === index ? "Show Less" : "Read More"}
-                </Button>
-              </CardContent>
+              <Button
+                variant="outlined"
+                color="secondary"
+                sx={{ mt: 3 }}
+                onClick={() => setSelectedSkill(skill)}
+              >
+                Read More
+              </Button>
             </Card>
           </Grid>
         ))}
       </Grid>
+      {selectedSkill && (
+        <Box
+          sx={{
+            position: "fixed",
+            inset: 0,
+            bgcolor: "rgba(0,0,0,0.6)",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            zIndex: 1300,
+          }}
+        >
+          <Card
+            sx={{
+              width: 650,
+              maxWidth: "90%",
+              position: "relative",
+              borderRadius: 4,
+            }}
+          >
+            <IconButton
+              onClick={() => setSelectedSkill(null)}
+              sx={{
+                position: "absolute",
+                top: 10,
+                right: 10,
+                zIndex: 1,
+                color: "#fff",
+              }}
+            >
+              <CloseIcon />
+            </IconButton>
+            <CardMedia
+              component="img"
+              image={selectedSkill.src}
+              alt={selectedSkill.title}
+              height="300"
+            />
+
+            <CardContent>
+              <Typography variant="h5" fontFamily="'Popins', sans-serif" fontWeight="800">
+                {selectedSkill.title}
+              </Typography>
+
+              <Typography
+                sx={{ mt: 2 }}
+                color="text.secondary"
+                lineHeight={1.8}
+                fontFamily="'Popins', sans-serif"
+                fontWeight={600}
+              >
+                {selectedSkill.description}
+              </Typography>
+            </CardContent>
+          </Card>
+        </Box>
+      )}
     </Box>
   );
 }
