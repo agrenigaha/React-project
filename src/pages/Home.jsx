@@ -3,46 +3,89 @@ import GitHubIcon from "@mui/icons-material/GitHub";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import profile from "../assets/profile.jpeg";
+
 export default function Home() {
   return (
     <Grid
       container
-      spacing={1}
+      spacing={{ xs: 2, sm: 3, md: 5 }}
       justifyContent="center"
       sx={{
         minHeight: "100vh",
         alignItems: "center",
+        px: { xs: 3, md: 8 },
+        py: { xs: 5, md: 0 },
       }}
     >
-          <Grid
-        size={6 }
+      <Grid
+        size={{ xs: 12, md: 6 }}
         sx={{
           display: "flex",
           justifyContent: "center",
         }}
       >
- 
         <Box
-          component="img"
-          src={profile}
-          alt="Agreni"
           sx={{
-            width: 350,
-            height: 350,
-            objectFit: "cover",
-            borderRadius: "50%",
-            boxShadow: 8,
+            position: "relative",
           }}
-        />
-        
+        >
+          <Box
+            sx={{
+              position: "absolute",
+              width: {
+                xs: 230,
+                sm: 280,
+                md: 330,
+                lg: 370,
+              },
+              height: {
+                xs: 230,
+                sm: 280,
+                md: 330,
+                lg: 370,
+              },
+              borderRadius: "50%",
+              background: "primary.main",
+              opacity: 0.2,
+              top: 10,
+              left: 10,
+            }}
+          />
+
+          <Box
+            component="img"
+            src={profile}
+            alt="Agreni"
+            sx={{
+              width: {
+                xs: 220,
+                sm: 270,
+                md: 320,
+                lg: 350,
+              },
+              height: {
+                xs: 220,
+                sm: 270,
+                md: 320,
+                lg: 350,
+              },
+              objectFit: "cover",
+              borderRadius: "50%",
+              position: "relative",
+              zIndex: 1,
+              border: "8px ",
+              boxShadow: 8,
+            }}
+          />
+        </Box>
       </Grid>
-      <Grid size={ 6 }>
+      <Grid size={{ xs: 12, md: 6 }}>
         <Box
           sx={{
-            minHeight: "100vh",
+            textAlign: { xs: "center", md: "left" },
             display: "flex",
             flexDirection: "column",
-            justifyContent: "center",
+            justifyContent: { xs: "center", md: "flexstart" },
           }}
         >
           <Typography
@@ -52,6 +95,13 @@ export default function Home() {
             sx={{
               fontFamily: "'Montserrat', sans-serif",
               fontWeight: 900,
+              fontSize: {
+                xs: "2.2rem",
+                sm: "3rem",
+                md: "3.5rem",
+                lg: "4rem",
+              },
+              
             }}
           >
             AGRENI GAHA
@@ -61,7 +111,11 @@ export default function Home() {
             sx={{
               mt: 1,
               fontFamily: "'Poppins', sans-serif",
-              fontWeight: 800,
+              fontWeight: {
+                xs: "1.4rem",
+                sm: "1.8rem",
+                md: "2rem",
+              },
             }}
           >
             Frontend Developer
@@ -71,21 +125,36 @@ export default function Home() {
             sx={{
               mt: 2,
               fontFamily: "'Poppins', sans-serif",
-              fontSize: "1.4rem",
+              fontSize: { xs: "1rem", sm: "1.1rem", md: "1.4rem" },
               lineHeight: 1.8,
-              maxWidth: 550,
+              maxWidth: 600,
             }}
           >
             Passionate frontend developer focused on building responsive,
             accessible, and modern web applications using React.js and Material
             UI.
           </Typography>
-          <Box>
+
+          <Box
+            sx={{
+              mt: 4,
+              display: "flex",
+              gap: 2,
+              justifyContent: {
+                xs: "center",
+                md: "flex-start",
+              },
+            }}
+          >
             <IconButton
               href="https://github.com/agrenigaha"
               target="_blank"
               sx={{
                 color: "black",
+                "&:hover": {
+                  color: "secondary.main",
+                  transform: "scale(1.2)",
+                },
               }}
             >
               <GitHubIcon fontSize="medium" />
@@ -96,6 +165,10 @@ export default function Home() {
               target="_blank"
               sx={{
                 color: "black",
+                "&:hover": {
+                  color: "secondary.main",
+                  transform: "scale(1.2)",
+                },
               }}
             >
               <LinkedInIcon fontSize="medium" />
@@ -106,18 +179,14 @@ export default function Home() {
               target="_blank"
               sx={{
                 color: "black",
+                "&:hover": {
+                  color: "secondary.main",
+                  transform: "scale(1.2)",
+                },
               }}
             >
               <InstagramIcon fontSize="medium" />
             </IconButton>
-            <IconButton
-              sx={{
-                color: "secondary",
-                "&:hover": {
-                  transform: "scale(1.1)",
-                },
-              }}
-            ></IconButton>
           </Box>
         </Box>
       </Grid>

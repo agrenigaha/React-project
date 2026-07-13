@@ -1,10 +1,16 @@
+import { useState } from "react";
+import emailjs from "@emailjs/browser";
 import { Box, Typography, TextField, Button, Grid } from "@mui/material";
-
 export default function Contact() {
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
   const textFieldStyles = {
     marginTop: 2,
     backgroundColor: "white",
-    borderRadius: "4px",
+    borderRadius: 2,
     "& .MuiInputBase-input": {
       color: "black",
     },
@@ -26,10 +32,55 @@ export default function Contact() {
       },
     },
   };
+  const handleChange = (e) => {
+    setForm({
+      ...form,
+      [e.target.name]: e.target.value,
+    });
+  };
+  const sendEmail = (e) => {
+    e.preventDefault();
+
+    emailjs
+      .send(
+        "service_fb4yjfm",
+        "template_quefd1j",
+        {
+          name: form.name,
+          email: form.email,
+          message: form.message,
+        },
+        {
+          publicKey: "okEHbOQEaZmvOg08E",
+        }
+      )
+      .then(() => {
+        alert("Message sent successfully!");
+
+        setForm({
+          name: "",
+          email: "",
+          message: "",
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+        alert("Failed to send message.");
+      });
+  };
   return (
     <Box
       sx={{
         minHeight: "100vh",
+        px: {
+          xs: 2,
+          sm: 4,
+          md: 6,
+        },
+        py: {
+          xs: 4,
+          md: 6,
+        },
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
@@ -37,13 +88,8 @@ export default function Contact() {
         width: "100%",
       }}
     >
-      <Grid
-        container
-        spacing={2}
-        justifyContent="center"
-      
-      >
-        <Grid size={9}>
+      <Grid container spacing={3} justifyContent="center">
+        <Grid size={{ xs: 12 }}>
           <Typography
             variant="h2"
             fontWeight="bold"
@@ -51,47 +97,91 @@ export default function Contact() {
             sx={{
               fontFamily: "'Montserrat', sans-serif",
               fontWeight: 900,
+              fontSize: {
+                xs: "2.2rem",
+                sm: "2.8rem",
+                md: "3.5rem",
+              },
+              textAlign: {
+                xs: "center",
+                md: "left",
+              },
+              mt: { xs: 7, md: 0 },
             }}
           >
             Contact Me
           </Typography>
         </Grid>
-        <Grid size={12}>
-          <Box sx={{mb:2}}>
-            <iframe 
-            src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d7067.464274232845!2d85.310403!3d27.663758!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2snp!4v1782710295594!5m2!1sen!2snp" 
-            width="100%" 
-            height="450"
-             style={{
-              border:0,
-              borderRadius:"10px",
-             }}
-             loading="lazy" 
-             />
+        <Grid size={{ xs: 12 }}>
+          <Box sx={{ mb: 2 }}>
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d3533.739541538895!2d85.30765607525215!3d27.663528976207743!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2snp!4v1783419590304!5m2!1sen!2snp"
+              width="100%"
+              height="450"
+              style={{
+                border: 0,
+                borderRadius: "10px",
+              }}
+              loading="lazy"
+            />
           </Box>
         </Grid>
-        <Grid size={12}>
-          <TextField fullWidth label="Name" sx={textFieldStyles} />
-        </Grid>
-        <Grid size={12}>
-          <TextField fullWidth label="Email" sx={textFieldStyles} />
-        </Grid>
-        <Grid size={12}>
-          <TextField fullWidth label="Message" multiline row={6} sx={textFieldStyles} />
-        </Grid>
-        <Grid size={12}>
-          <Button
-            variant="contained"
-            sx={{
-              marginTop: 3,
-              backgroundColor: "grey",
-              mt: 1,
-              fontFamily: "'Popins', sans-serif",
-              fontWeight: 600,
-            }}
-          >
-            Send
-          </Button>
+
+        <Grid size={{ xs: 12, md: 12 }}>
+          <Box component="form" onSubmit={sendEmail}>
+            <TextField
+              fullWidth
+              label="Name"
+              name="name"
+              value={form.name}
+              onChange={handleChange}
+              sx={textFieldStyles}
+            />
+
+            <Grid size={{ xs: 12, md: 12 }}>
+              <TextField
+                fullWidth
+                label="Email"
+                name="email"
+                type="email"
+                value={form.email}
+                onChange={handleChange}
+                sx={textFieldStyles}
+              />
+            </Grid>
+            <Grid size={{ xs: 12, md: 12 }}>
+              <TextField
+                fullWidth
+                label="Message"
+                name="message"
+                multiline
+                rows={6}
+                value={form.message}
+                onChange={handleChange}
+                sx={textFieldStyles}
+              />
+            </Grid>
+            <Grid size={{ xs: 12, md: 12 }}>
+              <Button
+                type="submit"
+                variant="contained"
+                sx={{
+                  marginTop: 3,
+                  px: 5,
+                  py: 1.2,
+                  backgroundColor: "secondary.main",
+
+                  fontFamily: "'Poppins', sans-serif",
+                  fontWeight: 600,
+                  "&:hover": {
+                    transform: "scale(1.05)",
+                  },
+                }}
+              >
+                Send
+              </Button>
+            </Grid>
+          </Box>
         </Grid>
       </Grid>
     </Box>

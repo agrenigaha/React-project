@@ -11,6 +11,8 @@ import {
   Drawer,
   Button,
   IconButton,
+  AppBar,
+  Toolbar,
 } from "@mui/material";
 import HomeIcon from "@mui/icons-material/Home";
 import PersonIcon from "@mui/icons-material/Person";
@@ -45,6 +47,7 @@ export default function Navbar() {
   ];
   const handleNavClick = (link) => {
     navigate(link);
+    setOpen(false);
   };
   const toggleDrawer = (newOpen) => () => {
     setOpen(newOpen);
@@ -52,7 +55,12 @@ export default function Navbar() {
   const sidebar = (
     <Box
       sx={{
-        width: 200,
+        width: {
+          xs: 260,
+          sm: 260,
+          md: 200,
+          lg: 220,
+        },
         height: "100vh",
         bgcolor: primaryColor,
         color: secondaryColor,
@@ -65,10 +73,20 @@ export default function Navbar() {
         variant="h3"
         sx={{
           color: secondaryColor,
-          fontSize: "30px",
-          p: 3,
-          fontFamily: "'Poppins', sans-serif",
+          fontSize: {
+            xs: "28px",
+            sm: "30px",
+            md: "30px",
+            lg: "32px",
+          },
+          p: {
+            xs: 2,
+            sm: 3,
+            md: 3,
+          },
+          fontFamily: "'Montserrit', sans-serif",
           fontWeight: 600,
+          
         }}
       >
         Agreni
@@ -82,9 +100,18 @@ export default function Navbar() {
               <ListItemButton
                 onClick={() => handleNavClick(item.link)}
                 sx={{
-                  fontFamily: "'Poppins', sans-serif",
-                  fontWeight: isActive ? 800 : 500,
-                  color: isActive ? "black" : secondaryColor,
+                  py: {
+                    xs: 1.8,
+                    sm: 2,
+                    md: 1.3,
+                  },
+                  px: {
+                    xs: 2,
+                    md: 1,
+                  },
+                  fontFamily: "'Montserrat', sans-serif",
+                  fontWeight: isActive ? 2000 : 2000,
+                  color: isActive ? "#000000" : secondaryColor,
                   transform: isActive ? "scale(1.15)" : "scale(1)",
                   transition: "all 0.25s ease, color 0.25s ease",
 
@@ -94,7 +121,22 @@ export default function Navbar() {
                   },
                 }}
               >
-                <ListItemIcon sx={{ color: secondaryColor }}>
+                <ListItemIcon
+                  sx={{
+                    color: isActive ? "#000000" : secondaryColor,
+                    minWidth: {
+                      xs: 42,
+                      md: 36,
+                    },
+                    "& svg": {
+                      fontSize: {
+                        xs: 28,
+                        sm: 26,
+                        md: 22,
+                      },
+                    },
+                  }}
+                >
                   {item.icon}
                 </ListItemIcon>
                 <ListItemText primary={item.label} />
@@ -106,13 +148,20 @@ export default function Navbar() {
       <Box
         sx={{
           mt: "auto",
-          mb: 8,
+          mb: {
+            xs: 3,
+            md: 6,
+          },
         }}
       >
         <Typography
           variant="body1"
           sx={{
             fontStyle: "'Montserrat', sans-serif",
+            fontSize: {
+              xs: 12,
+              md: 14,
+            },
             mb: 1,
             p: 3,
             mt: 1,
@@ -120,23 +169,61 @@ export default function Navbar() {
         >
           {new Date().getFullYear()} Agreni
         </Typography>
+        <Typography
+          variant="body2"
+          sx={{
+            fontStyle: "'Montserrat', sans-serif",
+            mb: 1,
+            p: 2,
+            mt: 2,
+          }}
+        >
+          Built with React & Material UI
+        </Typography>
       </Box>
     </Box>
   );
   return (
     <>
-      <IconButton
-        onClick={() => setOpen(true)}
+      <AppBar
+        
         sx={{
-          display: { xs: "block", md: "none" },
+          display: { xs: "flex", md: "none" },
           position: "fixed",
-          top: 10,
-          left: 10,
-          zIndex: 1200,
+          
+          
+          bgcolor: primaryColor,
+          color: secondaryColor,
+         
         }}
       >
-        <MenuIcon />
+        <Toolbar
+        sx={{
+          display:"flex",
+          justifyContent:"space-between",
+          minHeight:"56px",
+          px:2,
+        }}>
+              <Typography
+      variant="h6"
+      sx={{
+        fontWeight: 700,
+        color: secondaryColor,
+        fontFamily: "'Montserrat', sans-serif",
+      }}
+    >
+      Agreni
+    </Typography>
+    <IconButton
+    onClick={()=>{ console.log("clicked");
+       setOpen(true);}}
+    sx={{color:secondaryColor}}>
+        <MenuIcon/>
+      
+        
       </IconButton>
+      </Toolbar>
+      </AppBar>
       <Box
         sx={{
           display: { xs: "none", md: "block" },
@@ -146,7 +233,12 @@ export default function Navbar() {
       >
         {sidebar}
       </Box>
-      <Drawer open={open} onClose={toggleDrawer(false)}>
+      <Drawer
+      anchor="left"
+        open={open}
+        onClose={toggleDrawer(false)}
+   
+      >
         {sidebar}
       </Drawer>
     </>

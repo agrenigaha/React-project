@@ -16,16 +16,26 @@ export default function App() {
       sx={{
         display: "grid",
         gridTemplateColumns: {
-          xs: "1fr",        
+          xs: "1fr", 
+          sm:"1fr",       
           md: "200px 1fr",  
+          lg:"220px 1fr",
         },
         minHeight: "100vh",
       }}
     >
       <Navbar />
           <Box
+          component="main"
            sx={{
-             p: 3,
+            width:"100%",
+            minWidth: 0,
+             p: {xs:2,
+              sm:3,
+              md:4,
+              ls:5,
+             },
+             overflowX:"hidden",
              }}
            >
 
