@@ -256,7 +256,7 @@ export default function Portfolio() {
                       xs: ".95rem",
                       md: "1rem",
                     },
-                    color: "black",
+                    color:  "theme.palette.text.primary"
                   }}
                 >
                   {selectedItem.description}

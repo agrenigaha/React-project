@@ -22,12 +22,18 @@ import BusinessCenterIcon from "@mui/icons-material/BusinessCenter";
 import NewspaperIcon from "@mui/icons-material/Newspaper";
 import EmailIcon from "@mui/icons-material/Email";
 import MenuIcon from "@mui/icons-material/Menu";
+import { useContext } from "react";
 import { useTheme } from "@mui/material/styles";
+import { ColorModeContext } from "../ThemeContext";
+
+
+import LightModeIcon from "@mui/icons-material/LightMode";
+import DarkModeIcon from "@mui/icons-material/DarkMode";
 import { useNavigate, useLocation } from "react-router-dom";
 
 export default function Navbar() {
   const theme = useTheme();
-
+const colorMode = useContext(ColorModeContext);
   const primaryColor = theme.palette.primary.main;
   const secondaryColor = theme.palette.secondary.main;
   const background = theme.palette.background;
@@ -111,7 +117,7 @@ export default function Navbar() {
                   },
                   fontFamily: "'Montserrat', sans-serif",
                   fontWeight: isActive ? 2000 : 2000,
-                  color: isActive ? "#000000" : secondaryColor,
+                  color: isActive ? theme.palette.text.primary : secondaryColor,
                   transform: isActive ? "scale(1.15)" : "scale(1)",
                   transition: "all 0.25s ease, color 0.25s ease",
 
@@ -123,7 +129,7 @@ export default function Navbar() {
               >
                 <ListItemIcon
                   sx={{
-                    color: isActive ? "#000000" : secondaryColor,
+                    color: isActive ? theme.palette.text.primary: secondaryColor,
                     minWidth: {
                       xs: 42,
                       md: 36,
@@ -145,6 +151,26 @@ export default function Navbar() {
           );
         })}
       </List>
+      <Box
+  sx={{
+    display: "flex",
+    justifyContent: "center",
+    mb: 2,
+  }}
+>
+  <IconButton
+    onClick={colorMode.toggleColorMode}
+    sx={{
+      color: secondaryColor,
+    }}
+  >
+    {theme.palette.mode === "light" ? (
+      <DarkModeIcon />
+    ) : (
+      <LightModeIcon />
+    )}
+  </IconButton>
+</Box>
       <Box
         sx={{
           mt: "auto",
@@ -204,24 +230,25 @@ export default function Navbar() {
           minHeight:"56px",
           px:2,
         }}>
-              <Typography
-      variant="h6"
-      sx={{
-        fontWeight: 700,
-        color: secondaryColor,
-        fontFamily: "'Montserrat', sans-serif",
-      }}
-    >
-      Agreni
-    </Typography>
-    <IconButton
-    onClick={()=>{ console.log("clicked");
-       setOpen(true);}}
-    sx={{color:secondaryColor}}>
-        <MenuIcon/>
-      
-        
-      </IconButton>
+              <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+  <IconButton
+    onClick={colorMode.toggleColorMode}
+    sx={{ color: secondaryColor }}
+  >
+    {theme.palette.mode === "light" ? (
+      <DarkModeIcon />
+    ) : (
+      <LightModeIcon />
+    )}
+  </IconButton>
+
+  <IconButton
+    onClick={() => setOpen(true)}
+    sx={{ color: secondaryColor }}
+  >
+    <MenuIcon />
+  </IconButton>
+</Box>
       </Toolbar>
       </AppBar>
       <Box

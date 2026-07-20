@@ -150,7 +150,7 @@ export default function Home() {
               href="https://github.com/agrenigaha"
               target="_blank"
               sx={{
-                color: "black",
+                color: "text.primary",
                 "&:hover": {
                   color: "secondary.main",
                   transform: "scale(1.2)",
@@ -164,7 +164,7 @@ export default function Home() {
               href="https://linkedin.com/in/agreni gaha"
               target="_blank"
               sx={{
-                color: "black",
+                color: "text.primary",
                 "&:hover": {
                   color: "secondary.main",
                   transform: "scale(1.2)",
@@ -178,7 +178,7 @@ export default function Home() {
               href="https://instagram.com/iaminactive____"
               target="_blank"
               sx={{
-                color: "black",
+                color:" text.primary",
                 "&:hover": {
                   color: "secondary.main",
                   transform: "scale(1.2)",

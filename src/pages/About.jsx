@@ -97,13 +97,14 @@ export default function About() {
       <Grid size={12}>
         <Grid container spacing={5}>
           <Grid size={{ xs: 12, md: 6 }}>
-            <Card elevation={3} sx={{ p: 3, borderRadius: 4 }}>
+            <Card elevation={3} sx={{ p: 3, borderRadius: 4 , bgcolor: "primary.main"}}>
               {about.leftColumn.map((item) => (
                 <Typography
                   key={item.label}
                   variant="h6"
                   fontFamily="'Poppins', sans-serif"
                   fontSize="1.4rem"
+                  
                 >
                   {item.label}: {item.value}
                 </Typography>
@@ -112,13 +113,14 @@ export default function About() {
           </Grid>
 
           <Grid size={{ xs: 12, md: 6 }}>
-            <Card elevation={3} sx={{ p: 3, borderRadius: 4 }}>
+            <Card elevation={3} sx={{ p: 3, borderRadius: 4, bgcolor: "primary.main"}}>
               {about.rightColumn.map((item) => (
                 <Typography
                   key={item.label}
                   variant="h6"
                   fontFamily="'Poppins', sans-serif"
                   fontSize="1.4rem"
+                  
                 >
                   {item.label}: {item.value}
                 </Typography>
