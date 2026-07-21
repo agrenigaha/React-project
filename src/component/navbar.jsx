@@ -22,18 +22,19 @@ import BusinessCenterIcon from "@mui/icons-material/BusinessCenter";
 import NewspaperIcon from "@mui/icons-material/Newspaper";
 import EmailIcon from "@mui/icons-material/Email";
 import MenuIcon from "@mui/icons-material/Menu";
+import navItems from "../data/navbar.json";
 import { useContext } from "react";
 import { useTheme } from "@mui/material/styles";
 import { ColorModeContext } from "../ThemeContext";
 
-
 import LightModeIcon from "@mui/icons-material/LightMode";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 import { useNavigate, useLocation } from "react-router-dom";
+import Home from "../pages/Home";
 
 export default function Navbar() {
   const theme = useTheme();
-const colorMode = useContext(ColorModeContext);
+  const colorMode = useContext(ColorModeContext);
   const primaryColor = theme.palette.primary.main;
   const secondaryColor = theme.palette.secondary.main;
   const background = theme.palette.background;
@@ -42,15 +43,16 @@ const colorMode = useContext(ColorModeContext);
   const [open, setOpen] = useState(false);
   console.log({ open });
   // const navItems = ["Home", "About", "Projects", "Contact"];
-  const navItems = [
-    { label: "Home", icon: <HomeIcon />, link: "/" },
-    { label: "About", icon: <PersonIcon />, link: "/about" },
-    { label: "Skills", icon: <SettingsIcon />, link: "/skills" },
-    { label: "Projects", icon: <AssignmentIcon />, link: "/projects" },
-    { label: "Portfolio", icon: <BusinessCenterIcon />, link: "/portfolio" },
-    { label: "News", icon: <NewspaperIcon />, link: "/news" },
-    { label: "Contact", icon: <EmailIcon />, link: "/contact" },
-  ];
+  const iconMap = {
+  Home: <HomeIcon />,
+  Person: <PersonIcon />,
+  Settings: <SettingsIcon />,
+  Assignment: <AssignmentIcon />,
+  BusinessCenter: <BusinessCenterIcon />,
+  Newspaper: <NewspaperIcon />,
+  Email: <EmailIcon />,
+};
+  
   const handleNavClick = (link) => {
     navigate(link);
     setOpen(false);
@@ -92,7 +94,6 @@ const colorMode = useContext(ColorModeContext);
           },
           fontFamily: "'Montserrit', sans-serif",
           fontWeight: 600,
-          
         }}
       >
         Agreni
@@ -117,19 +118,22 @@ const colorMode = useContext(ColorModeContext);
                   },
                   fontFamily: "'Montserrat', sans-serif",
                   fontWeight: isActive ? 2000 : 2000,
-                  color: isActive ? theme.palette.text.primary : secondaryColor,
+                  color: isActive ?" #ffff" : secondaryColor,
                   transform: isActive ? "scale(1.15)" : "scale(1)",
                   transition: "all 0.25s ease, color 0.25s ease",
 
                   "&:hover": {
-                    color: "black",
+                    color: "white",
                     transform: "scale(1.08)",
                   },
                 }}
               >
                 <ListItemIcon
                   sx={{
-                    color: isActive ? theme.palette.text.primary: secondaryColor,
+                    display:{ xs:"flex", md:"flex"},
+                    color: isActive
+                      ? "#fff"
+                      : secondaryColor,
                     minWidth: {
                       xs: 42,
                       md: 36,
@@ -143,7 +147,7 @@ const colorMode = useContext(ColorModeContext);
                     },
                   }}
                 >
-                  {item.icon}
+                  {iconMap[item.icon]}
                 </ListItemIcon>
                 <ListItemText primary={item.label} />
               </ListItemButton>
@@ -152,25 +156,28 @@ const colorMode = useContext(ColorModeContext);
         })}
       </List>
       <Box
-  sx={{
-    display: "flex",
-    justifyContent: "center",
-    mb: 2,
-  }}
->
-  <IconButton
-    onClick={colorMode.toggleColorMode}
-    sx={{
-      color: secondaryColor,
-    }}
-  >
-    {theme.palette.mode === "light" ? (
-      <DarkModeIcon />
-    ) : (
-      <LightModeIcon />
-    )}
-  </IconButton>
-</Box>
+        sx={{
+          display: {
+            xs:"none",
+            md:"flex",
+          },
+          justifyContent: "center",
+          mb: 2,
+        }}
+      >
+        <IconButton
+          onClick={colorMode.toggleColorMode}
+          sx={{
+            color: secondaryColor,
+          }}
+        >
+          {theme.palette.mode === "light" ? (
+            <DarkModeIcon />
+          ) : (
+            <LightModeIcon />
+          )}
+        </IconButton>
+      </Box>
       <Box
         sx={{
           mt: "auto",
@@ -185,26 +192,18 @@ const colorMode = useContext(ColorModeContext);
           sx={{
             fontStyle: "'Montserrat', sans-serif",
             fontSize: {
-              xs: 12,
-              md: 14,
+              xs: 16,
+              md: 16,
             },
             mb: 1,
             p: 3,
-            mt: 1,
+            mt:{
+              xs:0,
+              md:1,
+            },
           }}
         >
-          {new Date().getFullYear()} Agreni
-        </Typography>
-        <Typography
-          variant="body2"
-          sx={{
-            fontStyle: "'Montserrat', sans-serif",
-            mb: 1,
-            p: 2,
-            mt: 2,
-          }}
-        >
-          Built with React & Material UI
+          {new Date().getFullYear()} Agreni Built with React & Material UI
         </Typography>
       </Box>
     </Box>
@@ -212,44 +211,60 @@ const colorMode = useContext(ColorModeContext);
   return (
     <>
       <AppBar
-        
         sx={{
           display: { xs: "flex", md: "none" },
           position: "fixed",
-          
-          
+
           bgcolor: primaryColor,
           color: secondaryColor,
-         
         }}
       >
         <Toolbar
-        sx={{
-          display:"flex",
-          justifyContent:"space-between",
-          minHeight:"56px",
-          px:2,
-        }}>
-              <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-  <IconButton
-    onClick={colorMode.toggleColorMode}
-    sx={{ color: secondaryColor }}
-  >
-    {theme.palette.mode === "light" ? (
-      <DarkModeIcon />
-    ) : (
-      <LightModeIcon />
-    )}
-  </IconButton>
+          sx={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            minHeight: "56px",
+            px: 2,
+          }}
+        >
+          <Typography
+            variant="h6"
+            sx={{
+              fontFamily: "'Montserrat', sans-serif",
+              fontWeight: 700,
+              color: secondaryColor,
+              cursor: "pointer",
+              fontSize: {
+                xs: "22px",
+                sm: "24px",
+              },
+            }}
+            
+          >
+            Agreni
+          </Typography>
 
-  <IconButton
-    onClick={() => setOpen(true)}
-    sx={{ color: secondaryColor }}
-  >
-    <MenuIcon />
-  </IconButton>
-</Box>
-      </Toolbar>
+          <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+            <IconButton
+              onClick={colorMode.toggleColorMode}
+              sx={{ color: secondaryColor }}
+            >
+              {theme.palette.mode === "light" ? (
+                <DarkModeIcon />
+              ) : (
+                <LightModeIcon />
+              )}
+            </IconButton>
+
+            <IconButton
+              onClick={() => setOpen(true)}
+              sx={{ color: secondaryColor }}
+            >
+              <MenuIcon />
+            </IconButton>
+          </Box>
+        </Toolbar>
       </AppBar>
       <Box
         sx={{
@@ -260,11 +275,14 @@ const colorMode = useContext(ColorModeContext);
       >
         {sidebar}
       </Box>
-      <Drawer
-      anchor="left"
-        open={open}
-        onClose={toggleDrawer(false)}
-   
+      <Drawer anchor="left" open={open} onClose={toggleDrawer(false)}
+      PaperProps={{
+        sx:{
+          width:"100%",
+          bg:primaryColor,
+        },
+        height:"100vh"
+      }}
       >
         {sidebar}
       </Drawer>

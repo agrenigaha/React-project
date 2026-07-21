@@ -97,13 +97,14 @@ export default function About() {
       <Grid size={12}>
         <Grid container spacing={5}>
           <Grid size={{ xs: 12, md: 6 }}>
-            <Card elevation={3} sx={{ p: 3, borderRadius: 4 , bgcolor: "primary.main"}}>
+            <Card elevation={3} sx={{ p: 3, borderRadius: 4 , bgcolor: "primary.main",color:"#fff"}}>
               {about.leftColumn.map((item) => (
                 <Typography
                   key={item.label}
                   variant="h6"
                   fontFamily="'Poppins', sans-serif"
                   fontSize="1.4rem"
+                  
                   
                 >
                   {item.label}: {item.value}
@@ -113,13 +114,14 @@ export default function About() {
           </Grid>
 
           <Grid size={{ xs: 12, md: 6 }}>
-            <Card elevation={3} sx={{ p: 3, borderRadius: 4, bgcolor: "primary.main"}}>
+            <Card elevation={3} sx={{ p: 3, borderRadius: 4, bgcolor: "primary.main", color:"#fff"}}>
               {about.rightColumn.map((item) => (
                 <Typography
                   key={item.label}
                   variant="h6"
                   fontFamily="'Poppins', sans-serif"
                   fontSize="1.4rem"
+                  color="inherit"
                   
                 >
                   {item.label}: {item.value}
@@ -153,6 +155,7 @@ export default function About() {
             bgcolor: "primary.main",
             boxShadow: 4,
             borderRadius: 3,
+color:"white",
             p: 2,
             "&:hover": {
               transform: "translateY(-8px)",
@@ -165,11 +168,12 @@ export default function About() {
               <Grid size={{ xs: 12, md: 6 }}>
                 <Typography
                   variant="h4"
-                  color="black"
+                  color="white"
                   sx={{
                     fontFamily: "'Poppins', sans-serif",
                     fontWeight: 800,
                     mb: 2,
+                    color:"secondary.main",
                   }}
                 >
                   Programming Skills
@@ -191,11 +195,12 @@ export default function About() {
               <Grid size={{ xs: 12, md: 6 }}>
                 <Typography
                   variant="h4"
-                  color="black"
+                  color="white"
                   sx={{
                     fontFamily: "'Poppins', sans-serif",
                     fontWeight: 800,
                     mb: 2,
+                    color:"secondary.main",
                   }}
                 >
                   Language Skills
@@ -223,11 +228,12 @@ export default function About() {
           <Grid size={{ xs: 12, md: 6 }}>
             <Typography
               variant="h4"
-              color="black"
+              color="white"
               sx={{
                 fontFamily: "'Poppins', sans-serif",
                 fontWeight: 800,
                 mb: 2,
+                color:"secondary.main",
               }}
             >
               Knowledge
@@ -238,6 +244,7 @@ export default function About() {
                 lineHeight: 2,
                 fontFamily: "'Poppins', sans-serif",
                 fontSize: "1.4rem",
+                
               }}
             >
               {knowledge.map((item, i) => (
@@ -252,11 +259,12 @@ export default function About() {
           <Grid size={{ xs: 12, md: 6 }}>
             <Typography
               variant="h4"
-              color="black"
+              color="white"
               sx={{
                 fontFamily: "'Poppins', sans-serif",
                 fontWeight: 800,
                 mb: 2,
+                color:"secondary.main"
               }}
             >
               Interests
@@ -286,6 +294,7 @@ export default function About() {
             bgcolor: "primary.main",
             transition: ".3s",
             borderRadius: 4,
+            color:"#fff",
             p: 2,
             "&:hover": {
               transform: "translateY(-8px)",
@@ -294,19 +303,27 @@ export default function About() {
           }}
         >
           <CardContent>
-            <Typography variant="h4" sx={{ fontWeight: 700, mb: 3 }}>
+            <Typography variant="h4" sx={{ fontWeight: 700, mb: 3 ,color:
+            "secondary.main",}}>
               Education
             </Typography>
 
             <Stepper orientation="vertical">
               {education.map((item, index) => (
                 <Step key={index} active>
-                  <StepLabel>
-                    <Typography variant="h6">{item.title}</Typography>
+                  <StepLabel
+                  sx={{
+                    "& .MuiStepLabel-label":{
+                      color:"#fff",
+                    },
+                  }}
+                  >
+                    <Typography variant="h6" color="#fff">{item.title}</Typography>
                   </StepLabel>
 
                   <StepContent>
-                    <Typography>{item.place}</Typography>
+                    <Typography color="#fff">
+                      {item.place}</Typography>
                     <Typography color="secondary">{item.year}</Typography>
                   </StepContent>
                 </Step>

@@ -15,22 +15,17 @@ import getTheme from "./theme";
 import { ColorModeContext } from "./ThemeContext";
 
 export default function App() {
-  // Theme mode state
   const [mode, setMode] = useState("light");
 
-  // Toggle function
   const colorMode = useMemo(
     () => ({
       toggleColorMode: () => {
-        setMode((prevMode) =>
-          prevMode === "light" ? "dark" : "light"
-        );
+        setMode((prevMode) => (prevMode === "light" ? "dark" : "light"));
       },
     }),
     []
   );
 
-  // Create MUI theme
   const theme = useMemo(() => getTheme(mode), [mode]);
 
   return (

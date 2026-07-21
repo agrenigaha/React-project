@@ -4,20 +4,23 @@ const getTheme = (mode) =>
   createTheme({
     palette: {
       mode,
-      primary: {
-        main: "#F5b7bd",
-      },
-      secondary: {
-        main: "#5b0f18",
-      },
-      background: {
-        default: mode === "light" ? "#FFEDED" : "#1A1A1B",
-        paper: mode === "light" ? "#ffffff" : "#3a171d",
-      },
-      text: {
-        primary: mode === "light" ? "#000000" : "#f8e8ea",
-        secondary: mode === "light" ? "#5b0f18" : "#f5b7bd",
-      },
+   primary: {
+    main: "#1A1A1A", 
+  },
+
+  secondary: {
+    main: "#D4AF37", 
+  },
+
+  background: {
+    default: mode === "light" ? "#FAFAF8" : "#121212",
+    paper: mode === "light" ? "#FFFFFF" : "#1E1E1E",
+  },
+
+  text: {
+    primary: mode === "light" ? "#1A1A1A" : "#F5F5F5",
+    secondary: mode === "light" ? "#6B7280" : "#CFCFCF",
+  },
     },
     typography: {
       fontFamily: "Montserrat, sans-serif",
