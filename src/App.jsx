@@ -1,4 +1,5 @@
-import { useMemo, useState } from "react";
+import { useMemo } from "react";
+import { useSelector } from "react-redux";
 import { ThemeProvider, CssBaseline, Box } from "@mui/material";
 import { Routes, Route } from "react-router-dom";
 
@@ -12,24 +13,15 @@ import News from "./pages/News";
 import Contact from "./pages/Contact";
 
 import getTheme from "./theme";
-import { ColorModeContext } from "./ThemeContext";
+
 
 export default function App() {
-  const [mode, setMode] = useState("light");
 
-  const colorMode = useMemo(
-    () => ({
-      toggleColorMode: () => {
-        setMode((prevMode) => (prevMode === "light" ? "dark" : "light"));
-      },
-    }),
-    []
-  );
-
+const mode = useSelector((state) => state.theme.mode);
   const theme = useMemo(() => getTheme(mode), [mode]);
 
   return (
-    <ColorModeContext.Provider value={colorMode}>
+  
       <ThemeProvider theme={theme}>
         <CssBaseline />
 
@@ -75,6 +67,6 @@ export default function App() {
           </Box>
         </Box>
       </ThemeProvider>
-    </ColorModeContext.Provider>
+    
   );
 }

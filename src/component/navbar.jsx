@@ -23,9 +23,10 @@ import NewspaperIcon from "@mui/icons-material/Newspaper";
 import EmailIcon from "@mui/icons-material/Email";
 import MenuIcon from "@mui/icons-material/Menu";
 import navItems from "../data/navbar.json";
-import { useContext } from "react";
+
 import { useTheme } from "@mui/material/styles";
-import { ColorModeContext } from "../ThemeContext";
+import { useDispatch } from "react-redux";
+import { toggleTheme } from "../redux/themeSlice";
 
 import LightModeIcon from "@mui/icons-material/LightMode";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
@@ -34,7 +35,7 @@ import Home from "../pages/Home";
 
 export default function Navbar() {
   const theme = useTheme();
-  const colorMode = useContext(ColorModeContext);
+  const dispatch = useDispatch();
   const primaryColor = theme.palette.primary.main;
   const secondaryColor = theme.palette.secondary.main;
   const background = theme.palette.background;
@@ -166,7 +167,7 @@ export default function Navbar() {
         }}
       >
         <IconButton
-          onClick={colorMode.toggleColorMode}
+          onClick={()=> dispatch(toggleTheme())}
           sx={{
             color: secondaryColor,
           }}
@@ -247,7 +248,7 @@ export default function Navbar() {
 
           <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
             <IconButton
-              onClick={colorMode.toggleColorMode}
+              onClick={()=> dispatch(toggleTheme())}
               sx={{ color: secondaryColor }}
             >
               {theme.palette.mode === "light" ? (
@@ -280,8 +281,9 @@ export default function Navbar() {
         sx:{
           width:"100%",
           bg:primaryColor,
+          height:"100vh",
         },
-        height:"100vh"
+        
       }}
       >
         {sidebar}

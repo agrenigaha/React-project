@@ -32,5 +32,5 @@ const getTheme = (mode) =>
       },
     },
   });
-
+4
 export default getTheme;

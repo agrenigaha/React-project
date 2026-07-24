@@ -314,7 +314,7 @@ color:"white",
                   <StepLabel
                   sx={{
                     "& .MuiStepLabel-label":{
-                      color:"#fff",
+                      color:"#fff !important",
                     },
                   }}
                   >
