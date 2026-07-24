@@ -1,39 +1,68 @@
-import { useState, type JSX } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
-import './App.css'
+import { useMemo } from "react";
+import { useSelector } from "react-redux";
+import { ThemeProvider, CssBaseline, Box } from "@mui/material";
+import { Routes, Route } from "react-router-dom";
 
-function App():JSX.Element {
+import Navbar from "./component/navbar";
+import Home from "./pages/Home";
+import About from "./pages/About";
+import Skills from "./pages/Skills";
+import Projects from "./pages/Projects";
+import Portfolio from "./pages/Portfolio";
+import News from "./pages/News";
+import Contact from "./pages/Contact";
 
-  // let value = 10;
-  const [count, setCount] = useState<number>(10)
-  const handleClick = (): void => {
-    // value = value + 1;
-    // console.log(value);
-    setCount((prev) => prev + 1);
-    console.log(count);
-  };
+import getTheme from "./theme";
+
+export default function App() {
+  const mode = useSelector((state) => state.theme.mode);
+  const theme = useMemo(() => getTheme(mode), [mode]);
 
   return (
-    <>
-      <section id="center">
-        <button onClick={handleClick}>Click me</button>
-        
-        {count}
-        
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((prev) => prev + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
 
-  
-    </>
+      <Box
+        sx={{
+          display: "grid",
+          gridTemplateColumns: {
+            xs: "1fr",
+            sm: "1fr",
+            md: "200px 1fr",
+            lg: "220px 1fr",
+          },
+          minHeight: "100vh",
+          bgcolor: "background.default",
+          color: "text.primary",
+        }}
+      >
+        <Navbar />
+
+        <Box
+          component="main"
+          sx={{
+            width: "100%",
+            minWidth: 0,
+            p: {
+              xs: 2,
+              sm: 3,
+              md: 4,
+              lg: 5,
+            },
+            overflowX: "hidden",
+          }}
+        >
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/skills" element={<Skills />} />
+            <Route path="/projects" element={<Projects />} />
+            <Route path="/portfolio" element={<Portfolio />} />
+            <Route path="/news" element={<News />} />
+            <Route path="/contact" element={<Contact />} />
+          </Routes>
+        </Box>
+      </Box>
+    </ThemeProvider>
   );
 }
-
-export default App;

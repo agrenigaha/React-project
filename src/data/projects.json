@@ -1,0 +1,9 @@
+[
+  {
+    "id": 1,
+    "title": "Movie Booking System",
+    "technologies": "HTML • CSS • JavaScript",
+    "description1": "Developed a front-end Movie Booking System as a college minor project using HTML, CSS, and JavaScript. The system allows users to browse Nepali movies, view show timings, select preferred seats, and simulate the ticket booking process through a responsive and user-friendly interface.",
+    "description2": "Key features include movie listings with posters, login/signup interfaces, seat selection, show schedules, location-based filtering, and responsive design. The project focuses on promoting Nepali cinema while providing users with a modern online booking experience."
+  }
+]
