@@ -14,59 +14,55 @@ import Contact from "./pages/Contact";
 
 import getTheme from "./theme";
 
-
 export default function App() {
-
-const mode = useSelector((state) => state.theme.mode);
+  const mode = useSelector((state) => state.theme.mode);
   const theme = useMemo(() => getTheme(mode), [mode]);
 
   return (
-  
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+
+      <Box
+        sx={{
+          display: "grid",
+          gridTemplateColumns: {
+            xs: "1fr",
+            sm: "1fr",
+            md: "200px 1fr",
+            lg: "220px 1fr",
+          },
+          minHeight: "100vh",
+          bgcolor: "background.default",
+          color: "text.primary",
+        }}
+      >
+        <Navbar />
 
         <Box
+          component="main"
           sx={{
-            display: "grid",
-            gridTemplateColumns: {
-              xs: "1fr",
-              sm: "1fr",
-              md: "200px 1fr",
-              lg: "220px 1fr",
+            width: "100%",
+            minWidth: 0,
+            p: {
+              xs: 2,
+              sm: 3,
+              md: 4,
+              lg: 5,
             },
-            minHeight: "100vh",
-            bgcolor: "background.default",
-            color: "text.primary",
+            overflowX: "hidden",
           }}
         >
-          <Navbar />
-
-          <Box
-            component="main"
-            sx={{
-              width: "100%",
-              minWidth: 0,
-              p: {
-                xs: 2,
-                sm: 3,
-                md: 4,
-                lg: 5,
-              },
-              overflowX: "hidden",
-            }}
-          >
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/about" element={<About />} />
-              <Route path="/skills" element={<Skills />} />
-              <Route path="/projects" element={<Projects />} />
-              <Route path="/portfolio" element={<Portfolio />} />
-              <Route path="/news" element={<News />} />
-              <Route path="/contact" element={<Contact />} />
-            </Routes>
-          </Box>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/skills" element={<Skills />} />
+            <Route path="/projects" element={<Projects />} />
+            <Route path="/portfolio" element={<Portfolio />} />
+            <Route path="/news" element={<News />} />
+            <Route path="/contact" element={<Contact />} />
+          </Routes>
         </Box>
-      </ThemeProvider>
-    
+      </Box>
+    </ThemeProvider>
   );
 }

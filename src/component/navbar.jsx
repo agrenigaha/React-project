@@ -45,15 +45,15 @@ export default function Navbar() {
   console.log({ open });
   // const navItems = ["Home", "About", "Projects", "Contact"];
   const iconMap = {
-  Home: <HomeIcon />,
-  Person: <PersonIcon />,
-  Settings: <SettingsIcon />,
-  Assignment: <AssignmentIcon />,
-  BusinessCenter: <BusinessCenterIcon />,
-  Newspaper: <NewspaperIcon />,
-  Email: <EmailIcon />,
-};
-  
+    Home: <HomeIcon />,
+    Person: <PersonIcon />,
+    Settings: <SettingsIcon />,
+    Assignment: <AssignmentIcon />,
+    BusinessCenter: <BusinessCenterIcon />,
+    Newspaper: <NewspaperIcon />,
+    Email: <EmailIcon />,
+  };
+
   const handleNavClick = (link) => {
     navigate(link);
     setOpen(false);
@@ -119,7 +119,7 @@ export default function Navbar() {
                   },
                   fontFamily: "'Montserrat', sans-serif",
                   fontWeight: isActive ? 2000 : 2000,
-                  color: isActive ?" #ffff" : secondaryColor,
+                  color: isActive ? " #ffff" : secondaryColor,
                   transform: isActive ? "scale(1.15)" : "scale(1)",
                   transition: "all 0.25s ease, color 0.25s ease",
 
@@ -131,10 +131,8 @@ export default function Navbar() {
               >
                 <ListItemIcon
                   sx={{
-                    display:{ xs:"flex", md:"flex"},
-                    color: isActive
-                      ? "#fff"
-                      : secondaryColor,
+                    display: { xs: "flex", md: "flex" },
+                    color: isActive ? "#fff" : secondaryColor,
                     minWidth: {
                       xs: 42,
                       md: 36,
@@ -159,15 +157,15 @@ export default function Navbar() {
       <Box
         sx={{
           display: {
-            xs:"none",
-            md:"flex",
+            xs: "none",
+            md: "flex",
           },
           justifyContent: "center",
           mb: 2,
         }}
       >
         <IconButton
-          onClick={()=> dispatch(toggleTheme())}
+          onClick={() => dispatch(toggleTheme())}
           sx={{
             color: secondaryColor,
           }}
@@ -198,9 +196,9 @@ export default function Navbar() {
             },
             mb: 1,
             p: 3,
-            mt:{
-              xs:0,
-              md:1,
+            mt: {
+              xs: 0,
+              md: 1,
             },
           }}
         >
@@ -241,14 +239,13 @@ export default function Navbar() {
                 sm: "24px",
               },
             }}
-            
           >
             Agreni
           </Typography>
 
           <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
             <IconButton
-              onClick={()=> dispatch(toggleTheme())}
+              onClick={() => dispatch(toggleTheme())}
               sx={{ color: secondaryColor }}
             >
               {theme.palette.mode === "light" ? (
@@ -276,15 +273,17 @@ export default function Navbar() {
       >
         {sidebar}
       </Box>
-      <Drawer anchor="left" open={open} onClose={toggleDrawer(false)}
-      PaperProps={{
-        sx:{
-          width:"100%",
-          bg:primaryColor,
-          height:"100vh",
-        },
-        
-      }}
+      <Drawer
+        anchor="left"
+        open={open}
+        onClose={toggleDrawer(false)}
+        PaperProps={{
+          sx: {
+            width: "100%",
+            bg: primaryColor,
+            height: "100vh",
+          },
+        }}
       >
         {sidebar}
       </Drawer>
