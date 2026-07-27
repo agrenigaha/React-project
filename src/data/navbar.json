@@ -19,11 +19,7 @@
     "icon": "Assignment",
     "link": "/projects"
   },
-  {
-    "label": "Portfolio",
-    "icon": "BusinessCenter",
-    "link": "/portfolio"
-  },
+  
   {
     "label": "News",
     "icon": "Newspaper",

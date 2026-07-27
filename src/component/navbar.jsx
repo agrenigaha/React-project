@@ -38,6 +38,8 @@ export default function Navbar() {
   const dispatch = useDispatch();
   const primaryColor = theme.palette.primary.main;
   const secondaryColor = theme.palette.secondary.main;
+  const activeIconColor =
+  theme.palette.mode === "light" ? "#000000" : "#ffffff";
   const background = theme.palette.background;
   const navigate = useNavigate();
   const location = useLocation();
@@ -76,6 +78,10 @@ export default function Navbar() {
         position: "fixed",
         display: "flex",
         flexDirection: "column",
+        borderTopRightRadius:"24px",
+        borderBottomRightRadius:"24px",
+        boxShadow:"4px 0 20px rgba(0,0,0,0.12)",
+        overflow:"hidden",
       }}
     >
       <Typography
@@ -109,46 +115,57 @@ export default function Navbar() {
                 onClick={() => handleNavClick(item.link)}
                 sx={{
                   py: {
-                    xs: 1.8,
-                    sm: 2,
-                    md: 1.3,
+                    xs: 2.2,
+                    sm: 2.5,
+                    md: 1.8,
                   },
                   px: {
-                    xs: 2,
-                    md: 1,
+                    xs: 3,
+                    md: 2,
                   },
+                  my:1,
                   fontFamily: "'Montserrat', sans-serif",
                   fontWeight: isActive ? 2000 : 2000,
-                  color: isActive ? " #ffff" : secondaryColor,
+                  color: isActive ? activeIconColor : secondaryColor,
                   transform: isActive ? "scale(1.15)" : "scale(1)",
                   transition: "all 0.25s ease, color 0.25s ease",
 
                   "&:hover": {
-                    color: "white",
-                    transform: "scale(1.08)",
-                  },
+  color: theme.palette.mode === "light" ? "#000" : "#fff",
+  transform: "scale(1.08)",
+},
                 }}
               >
                 <ListItemIcon
                   sx={{
                     display: { xs: "flex", md: "flex" },
-                    color: isActive ? "#fff" : secondaryColor,
+                    color: isActive ? activeIconColor : secondaryColor,
                     minWidth: {
-                      xs: 42,
-                      md: 36,
+                      xs: 50,
+                      md: 45,
                     },
                     "& svg": {
                       fontSize: {
-                        xs: 28,
-                        sm: 26,
-                        md: 22,
+                        xs: 32,
+                        sm: 30,
+                        md: 26,
                       },
                     },
                   }}
                 >
                   {iconMap[item.icon]}
                 </ListItemIcon>
-                <ListItemText primary={item.label} />
+                <ListItemText
+  primary={item.label}
+  primaryTypographyProps={{
+    fontSize: {
+      xs: "1.1rem",
+      md: "1rem",
+    },
+    fontWeight: 600,
+    fontFamily: "'Montserrat', sans-serif",
+  }}
+/>
               </ListItemButton>
             </ListItem>
           );
@@ -177,35 +194,7 @@ export default function Navbar() {
           )}
         </IconButton>
       </Box>
-      <Box
-        sx={{
-          mt: "auto",
-          mb: {
-            xs: 3,
-            md: 6,
-          },
-        }}
-      >
-        <Typography
-          variant="body1"
-          sx={{
-            fontStyle: "'Montserrat', sans-serif",
-            fontSize: {
-              xs: 16,
-              md: 16,
-            },
-            mb: 1,
-            p: 3,
-            mt: {
-              xs: 0,
-              md: 1,
-            },
-          }}
-        >
-          {new Date().getFullYear()} Agreni Built with React & Material UI
-        </Typography>
       </Box>
-    </Box>
   );
   return (
     <>
@@ -279,9 +268,12 @@ export default function Navbar() {
         onClose={toggleDrawer(false)}
         PaperProps={{
           sx: {
-            width: "100%",
-            bg: primaryColor,
+            width: 260,
+            bgColor: primaryColor,
             height: "100vh",
+            borderTopRightRadius:"24px",
+            borderBottomRightRadius:"24px",
+            overflow:"hidden",
           },
         }}
       >

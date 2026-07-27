@@ -19,8 +19,15 @@ import knowledge from "../data/knowledge.json";
 import interests from "../data/interests.json";
 import education from "../data/education.json";
 import resume from "../assets/Agreni_Gaha_CV.1.pdf";
-
+import { useTheme } from "@mui/material/styles";
 export default function About() {
+  
+  const theme = useTheme();
+
+  const textColor =
+    theme.palette.mode === "light" ? "#000000" : "#ffffff";
+
+  
   return (
     <Grid
       container
@@ -97,7 +104,7 @@ export default function About() {
       <Grid size={12}>
         <Grid container spacing={5}>
           <Grid size={{ xs: 12, md: 6 }}>
-            <Card elevation={3} sx={{ p: 3, borderRadius: 4 , bgcolor: "primary.main",color:"#fff"}}>
+            <Card elevation={3} sx={{ p: 3, borderRadius: 4 , bgcolor: "primary.main",color: textColor}}>
               {about.leftColumn.map((item) => (
                 <Typography
                   key={item.label}
@@ -114,7 +121,7 @@ export default function About() {
           </Grid>
 
           <Grid size={{ xs: 12, md: 6 }}>
-            <Card elevation={3} sx={{ p: 3, borderRadius: 4, bgcolor: "primary.main", color:"#fff"}}>
+            <Card elevation={3} sx={{ p: 3, borderRadius: 4, bgcolor: "primary.main", color:textColor}}>
               {about.rightColumn.map((item) => (
                 <Typography
                   key={item.label}
@@ -155,7 +162,7 @@ export default function About() {
             bgcolor: "primary.main",
             boxShadow: 4,
             borderRadius: 3,
-color:"white",
+color: textColor,
             p: 2,
             "&:hover": {
               transform: "translateY(-8px)",
@@ -168,7 +175,7 @@ color:"white",
               <Grid size={{ xs: 12, md: 6 }}>
                 <Typography
                   variant="h4"
-                  color="white"
+                  color= "textColor"
                   sx={{
                     fontFamily: "'Poppins', sans-serif",
                     fontWeight: 800,
@@ -181,7 +188,19 @@ color:"white",
 
                 {programming.map((item) => (
                   <Box key={item.name} sx={{ mb: 2 }}>
+                    <Box
+                      sx={{
+                        display:"flex",
+                        justifyContent:"space-between",
+                        mb:0.5,
+                      }
+
+                      }>
                     <Typography>{item.name}</Typography>
+                    <Typography>
+                      {item.value}%
+                    </Typography>
+                    </Box>
                     <LinearProgress
                       color="secondary"
                       variant="determinate"
@@ -208,7 +227,20 @@ color:"white",
 
                 {language.map((item) => (
                   <Box key={item.name} sx={{ mb: 2 }}>
+                           <Box
+                      sx={{
+                        display:"flex",
+                        justifyContent:"space-between",
+                        mb:0.5,
+                      }
+
+                      }
+                      >
                     <Typography>{item.name}</Typography>
+                    <Typography>
+                      {item.value}%
+                    </Typography>
+                    </Box>
                     <LinearProgress
                       color="secondary"
                       variant="determinate"
@@ -228,7 +260,7 @@ color:"white",
           <Grid size={{ xs: 12, md: 6 }}>
             <Typography
               variant="h4"
-              color="white"
+              color="textColor"
               sx={{
                 fontFamily: "'Poppins', sans-serif",
                 fontWeight: 800,
@@ -259,7 +291,7 @@ color:"white",
           <Grid size={{ xs: 12, md: 6 }}>
             <Typography
               variant="h4"
-              color="white"
+              color="textColor"
               sx={{
                 fontFamily: "'Poppins', sans-serif",
                 fontWeight: 800,
@@ -294,7 +326,7 @@ color:"white",
             bgcolor: "primary.main",
             transition: ".3s",
             borderRadius: 4,
-            color:"#fff",
+            color:textColor,
             p: 2,
             "&:hover": {
               transform: "translateY(-8px)",
@@ -313,16 +345,16 @@ color:"white",
                 <Step key={index} active>
                   <StepLabel
                   sx={{
-                    "& .MuiStepLabel-label":{
-                      color:"#fff !important",
-                    },
+"& .MuiStepLabel-label":{
+  color:`${textColor} !important`,
+},
                   }}
                   >
                     <Typography variant="h6" color="#fff">{item.title}</Typography>
                   </StepLabel>
 
                   <StepContent>
-                    <Typography color="#fff">
+                    <Typography color="textColor">
                       {item.place}</Typography>
                     <Typography color="secondary">{item.year}</Typography>
                   </StepContent>

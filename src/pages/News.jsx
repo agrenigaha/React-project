@@ -107,7 +107,7 @@ export default function News() {
 
                 <Typography
                   variant="body2"
-                  color="secondary.main"
+                  color="primaryColor"
                   sx={{
                     p: 2,
                     fontFamily: "'Poppins', sans-serif",
@@ -216,7 +216,7 @@ export default function News() {
                     md: "1.1rem",
                   },
                 }}
-                color="secondary"
+                color="black"
                 lineHeight={1.8}
               >
                 {selectedNews.description}
