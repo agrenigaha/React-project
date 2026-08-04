@@ -1,10 +1,15 @@
 import { useState } from "react";
 import emailjs from "@emailjs/browser";
+import MenuItem from "@mui/material/MenuItem";
+import { useGetCountriesQuery } from "../redux/api/countryApi";
 import { Box, Typography, TextField, Button, Grid } from "@mui/material";
 export default function Contact() {
+  const { data: countries, isLoading, isError } = useGetCountriesQuery();
   const [form, setForm] = useState({
     name: "",
+
     email: "",
+    country: "",
     message: "",
   });
   const textFieldStyles = {
@@ -48,6 +53,7 @@ export default function Contact() {
         {
           name: form.name,
           email: form.email,
+          country: form.country,
           message: form.message,
         },
         {
@@ -60,6 +66,7 @@ export default function Contact() {
         setForm({
           name: "",
           email: "",
+          country: "",
           message: "",
         });
       })
@@ -148,6 +155,30 @@ export default function Contact() {
                 onChange={handleChange}
                 sx={textFieldStyles}
               />
+            </Grid>
+            <Grid size={{ xs: 12, md: 12 }}>
+              <TextField
+                fullWidth
+                select
+                required
+                label="Country"
+                name="country"
+                value={form.country}
+                onChange={handleChange}
+                sx={textFieldStyles}
+              >
+                {isError && (
+                  <MenuItem disabled>Failed to load countries</MenuItem>
+                )}
+                {isLoading && (
+                  <MenuItem disabled>Loading countries...</MenuItem>
+                )}
+                {countries?.map((country) => (
+                  <MenuItem key={country.code} value={country.name}>
+                    {country.name}
+                  </MenuItem>
+                ))}
+              </TextField>
             </Grid>
             <Grid size={{ xs: 12, md: 12 }}>
               <TextField
